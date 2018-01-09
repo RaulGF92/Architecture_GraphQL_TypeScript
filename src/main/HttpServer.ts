@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as colors from 'colors';
 
 export default class HttpServer {
     private app: any;
@@ -11,7 +12,7 @@ export default class HttpServer {
 
     public initApp() {
         this.app.listen(this.PORT, () => {
-            console.info("HttpServer", "The server was started in http://localhost:"+this.PORT);
+            console.info("HttpServer", "The server was started in "+colors.bold("http://localhost:"+this.PORT));
         })
     }
 

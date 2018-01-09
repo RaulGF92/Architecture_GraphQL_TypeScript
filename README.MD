@@ -10,6 +10,12 @@ You need upgrade the project using NPM dependencies, go to your **Project PATH**
     npm upgrade
 ```
 
+For run all test of app only need put:
+
+```bash
+    npm test
+```
+
 Then you must run the project in dev mode using this code:
 
 ```bash

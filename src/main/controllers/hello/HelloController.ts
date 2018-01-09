@@ -1,10 +1,10 @@
-import GraphqlController from '../GraphQLController';
+import GraphQLController from '../GraphQLController';
 import * as graphqlHTTP from 'express-graphql';
 import { buildSchema, GraphQLObjectType } from 'graphql';
 import { GraphQLSchema } from 'graphql/type/schema';
 import { GraphQLString } from 'graphql/type/scalars';
 
-export default class HelloController implements GraphqlController {
+export default class HelloController implements GraphQLController {
 
     private path: String;
 
