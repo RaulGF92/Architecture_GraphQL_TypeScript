@@ -16,6 +16,12 @@ Then for run the project in dev mode you only need run this code:
     npm run dev
 ```
 
+Then for check if the service is run correctly you only need put in your browser this link and the GraphQL IDE appear:
+
+```URL
+    http://localhost:8880/hello
+```
+
 ## Instructions
 
 ### Controlers
