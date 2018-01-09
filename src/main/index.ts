@@ -7,7 +7,9 @@ console.log(colors.green('               Starting User API                    ')
 console.log(colors.green('----------------------------------------------------'));
 
 let server = new HttpServer(8880);
-let controllers = [new HelloController("/hello")];
+let controllers = [
+    new HelloController("/hello")
+];
 
 controllers.forEach((controller) => {
     if (!existPath(controller)){
