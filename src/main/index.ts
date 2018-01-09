@@ -1,14 +1,15 @@
 import * as colors from 'colors';
 import HttpServer from './HttpServer';
-import GraphqlController from './controllers/GraphqlController';
-import HelloController from './controllers/HelloController';
+import GraphQLController from './controllers/GraphQLController';
+import HelloController from './controllers/hello/HelloController';
 
 console.log(colors.green('               Starting User API                    '));
 console.log(colors.green('----------------------------------------------------'));
 
 let server = new HttpServer(8880);
 let controllers = [
-    new HelloController("/hello")
+    new HelloController("/hello"),
+    //New controllers
 ];
 
 controllers.forEach((controller) => {
