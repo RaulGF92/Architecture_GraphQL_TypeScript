@@ -1,13 +1,13 @@
 import { expect, should } from 'chai';
 import * as chai from 'chai';
-import * as chaiHttp from 'chai-http';
+
 import 'mocha';
 
 import App from '../main/App';
 import HelloController from '../main/controllers/hello/HelloController';
 
 
-chai.use(chaiHttp);
+chai.use(require('chai-http'));
 
 describe('dummy test', () => {
   it('should return true', () => {
@@ -28,10 +28,9 @@ describe('exitPath', () => {
   });
 });
 
-describe('---init---', () => {
+describe('init', () => {
   it('should access to entry point', () => {
     let app = new App();
-    app.init();
     chai.request(app.server.getApp())
       .get("/hello")
       .end((err, res) => {
@@ -40,7 +39,6 @@ describe('---init---', () => {
   });
   it('should not access to imaginary entry point', () => {
     let app = new App();
-    app.init();
     chai.request(app.server.getApp())
       .get("/hellosafas")
       .end((err, res) => {
