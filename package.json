@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node_modules/.bin/tsc",
     "dev": "npm run build | node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "author": "raulgf92",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "@types/color": "^2.0.0",
     "@types/mocha": "^2.2.46",
     "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
     "mocha": "^4.1.0",
     "ts-node": "^4.1.0",
     "typescript": "^2.6.2"
