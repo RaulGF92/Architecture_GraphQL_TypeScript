@@ -1,6 +1,6 @@
 # Basic GraphQL backend architecture
 
-This code is a basic template for start GraphQL backend service in **TypeScript**. For start to develop the app you only know some easy concepts or if you don't need explanations only make run the project using this command.
+This code is a basic template for start GraphQL backend service in **TypeScript**. For start to develop the app you only need know some concepts, a continue it will be explain it ,or if you don't need explanations only make run the project with this commands.
 
 ## Run the project
 
@@ -10,13 +10,13 @@ You need upgrade the project using NPM dependencies, go to your **Project PATH**
     npm upgrade
 ```
 
-Then for run the project in dev mode you only need run this code:
+Then you must run the project in dev mode using this code:
 
 ```bash
     npm run dev
 ```
 
-Then for check if the service is run correctly you only need put in your browser this link and the GraphQL IDE appear:
+Finaly, for check if the service is run correctly you only need put this link in your browser and then the GraphQL IDE going to appear:
 
 ```URL
     http://localhost:8880/hello
@@ -26,7 +26,7 @@ Then for check if the service is run correctly you only need put in your browser
 
 ### Controlers
 
-The controllers are pieces of code that control and create Http conections, or other protocols. In this case the architecture that it has,have create it a interface call **GraphqlController**. This class implements all the basic to start a new GraphQL endpoint. You SHALL implements the interface and them put in controllers array, ubicated in index main class.
+The controllers are pieces of code that control and create Http conections, or other types of protocols. In this case the architecture that it has this code, have create it a interface call **GraphqlController**. This class implements all the basic to start a new GraphQL endpoint. You SHALL implements the interface and them put in controllers array, ubicated in index main class.
 
 ```TypeScript
     let controllers = [
@@ -35,7 +35,22 @@ The controllers are pieces of code that control and create Http conections, or o
     ];
 ```
 
-The root object added with schema is provied by Bussiness layer so you must import the Bussines class relation with this controller class and implement the **getSchema()** Function.
+Other thing we have keep in mind is the initialization of GraphQl service, This is initializated using the Schema object and the root object.The Schema object is provided in the controller using the **getSchema()** function, you can look this schema taked of **HelloController** class.
+
+```TypeScript
+    public getBuildSchema(){
+        return new GraphQLSchema({
+            query: new GraphQLObjectType({
+                name : "hello",
+                fields : {
+                    hello : { type : GraphQLString }
+                }
+            }),
+          });
+    }
+```
+
+The root object is provided by Bussiness layer, so you must import the Bussines class related with controller class that you are implementing, and implement the **getBusiness()** Function.
 
 ```TypeScript
     public getBusiness(){
