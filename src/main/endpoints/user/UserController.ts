@@ -14,7 +14,7 @@ export default class UserController extends GraphQLController {
 
     public constructor(path: String) {
         //IF DON'T HAVE MUTATION IMPLEMENTATION PUT NULL
-        super(path,Query,Mutation);
+        super(path, Query, Mutation);
         //Only need put main Query is a check of minimal requeriments
     }
 

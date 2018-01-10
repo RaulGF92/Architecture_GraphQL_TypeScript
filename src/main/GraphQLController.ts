@@ -1,18 +1,19 @@
 //GraphQLController.ts
-import { 
+import {
     GraphQLSchema,
-    GraphQLType, 
-    GraphQLInputObjectType, 
-    GraphQLObjectType} from 'graphql';
+    GraphQLType,
+    GraphQLInputObjectType,
+    GraphQLObjectType
+} from 'graphql';
 import * as graphqlHTTP from 'express-graphql';
 
 export default abstract class GraphQLController {
 
     private path: String;
-    protected query : any;
-    protected mutation : any;
+    protected query: any;
+    protected mutation: any;
 
-    constructor(path: String,query:any,mutation:any) {
+    constructor(path: String, query: any, mutation: any) {
         this.path = path;
         this.query = query;
         this.mutation = mutation;
