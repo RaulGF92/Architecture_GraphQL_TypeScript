@@ -1,9 +1,7 @@
 //HelloController.ts (Hello)
 import {
-    buildSchema,
     GraphQLObjectType,
     GraphQLScalarType,
-    GraphQLSchema,
     GraphQLString
 } from 'graphql';
 import * as graphqlHTTP from 'express-graphql';

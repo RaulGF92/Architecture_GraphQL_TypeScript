@@ -30,37 +30,83 @@ Finaly, for check if the service is run correctly you only need put this link in
 
 ## Instructions
 
-### Controlers
+### Endpoints
 
-The controllers are pieces of code that control and create Http conections, or other types of protocols. In this case the architecture that it has this code, have create it a interface call **GraphqlController**. This class implements all the basic to start a new GraphQL endpoint. You SHALL implements the interface and them put in controllers array, ubicated in index main class.
+The Endpoints is the layer that contain all GraphQL services. This layer is group in **Endpoint** that it is a set of entities, which it working together can it make a correct service's GraphQL.
+
+The Endpoint entity is agruped in four entities and its is contains in the same folder. For example in Hello's Endpoint folder we have :
+
+* Controller (HelloController.ts)
+* Schema (Schema.ts)
+* Query (Query.ts)
+* Mutation [**Optional**] (Mutation.ts)
+* Model Class [**Optional**] (Mutation.ts)
+
+## Controller
+
+The Controller is the class which it is comunicate with HTTP layer and binding us endpoint in a especific path. Because a controller can be of any protocol, the code have a especific **GraphQLController**. This class is use in the **HTTPServer** and contains the graphQL HTTP router.
+
+When we create a new Controller we shall extend us class from **GraphQLController**. And the TypeScript say us that we need implement some constructor and functions are example are this:
 
 ```TypeScript
-    let controllers = [
-        new HelloController("/hello"),
-        //New controllers
-    ];
+class MyController extends GraphQLController {
+
+    public constructor(path: String) {
+        //IF DON'T HAVE MUTATION IMPLEMENTATION PUT NULL
+        super(path,Query,Mutation);
+        //Only need put main Query is a check of minimal requeriments
+    }
+
+    public getQuery() {
+        return new GraphQLObjectType({
+            name: 'get',
+            fields: () => ({
+                ...this.query,
+            })
+        });
+    }
+
+    public getMutation() {
+        return new GraphQLObjectType({
+            name: 'post',
+            fields: () => ({
+                ...this.mutation,
+            })
+        });
+    }
+
+}
 ```
 
-Other thing we have keep in mind is the initialization of GraphQl service, This is initializated using the Schema object and the root object.The Schema object is provided in the controller using the **getSchema()** function, you can look this schema taked of **HelloController** class.
+### Add more Queries or Mutations
+
+When you have a entity that have some relationship or you like put other entities in the same endpoint you only need put the queries or the mutations in its field that correspond.
+
+In the case of Query:
 
 ```TypeScript
-    public getBuildSchema(){
-        return new GraphQLSchema({
-            query: new GraphQLObjectType({
-                name : "hello",
-                fields : {
-                    hello : { type : GraphQLString }
-                }
-            }),
-          });
+    public getQuery() {
+        return new GraphQLObjectType({
+            name: 'get',
+            fields: () => ({
+                ...this.query,
+                ...this.otherQuery
+            })
+        });
     }
 ```
 
-The root object is provided by Bussiness layer, so you must import the Bussines class related with controller class that you are implementing, and implement the **getBusiness()** Function.
+In the case of Mutation:
 
 ```TypeScript
-    public getBusiness(){
-        return new MyBusinessClass().toObject();
+    public getMutation() {
+        return new GraphQLObjectType({
+            name: 'post',
+            fields: () => ({
+                ...this.mutation,
+                ...this.otherMutation
+            })
+        });
     }
 ```
 
