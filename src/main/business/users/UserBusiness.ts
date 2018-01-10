@@ -5,13 +5,12 @@ export default class UserBusiness implements Business {
     
     dao : DAO;
 
+    public hello(){
+        return "Hola Raúl";
+    }
+    
     public toObject(){
-        
-        for(var f in this){
-            console.log(f);
-        }
-
-        return {};
+        return Object.getPrototypeOf(this);
     }
 
 }

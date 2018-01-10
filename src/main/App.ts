@@ -1,33 +1,34 @@
 import * as colors from 'colors';
 import HttpServer from './HttpServer';
-import GraphQLController from './controllers/GraphQLController';
-import HelloController from './controllers/hello/HelloController';
+import GraphQLController from './GraphQLController';
+import HelloController from './endpoints/hello/HelloController';
+import UserController from './endpoints/user/UserController';
 
 export default class App {
 
     public server : HttpServer;
     public controllers = [
         new HelloController("/hello"),
-        //New controllers
+        new UserController("/user")
     ];
 
     constructor() {
         this.server = new HttpServer(8880);
-        this.controllers.forEach((controller) => {
-            if (!this.existPath(controller)) {
-                this.server.getApp().use(controller.getPath(), controller.getGraphqlHttp());
-                console.info("HttpServer", "Binding " + controller.constructor.name + " in path: " + colors.blue(controller.getPath().toString()));
-            }
-        });
     }
 
     init() {
         console.log(colors.green('               Starting GraphQL API                    '));
         console.log(colors.green('-------------------------------------------------------'));
+        this.controllers.forEach((controller) => {
+            if (this.notExistOtherPath(controller)) {
+                this.server.getApp().use(controller.getPath(), controller.getGraphqlHttp());
+                console.info("HttpServer", "Binding " + controller.constructor.name + " in path: " + colors.blue(controller.getPath().toString()));
+            }
+        });
         this.server.initApp();
     }
 
-    existPath(controllerToCheck: GraphQLController) {
+    notExistOtherPath(controllerToCheck: GraphQLController) {
         return this.controllers.filter((controller) => {
             if (controller.getPath() === controllerToCheck.getPath())
                 return true;

@@ -4,7 +4,7 @@ import * as chai from 'chai';
 import 'mocha';
 
 import App from '../main/App';
-import HelloController from '../main/controllers/hello/HelloController';
+import HelloController from '../main/endpoints/hello/HelloController';
 
 
 chai.use(require('chai-http'));
@@ -19,12 +19,12 @@ describe('exitPath', () => {
   it('should return true', () => {
     let app = new App();
     app.controllers = [new HelloController("/hello"),new HelloController("/hello2"),new HelloController("/hello3")];
-    expect(app.existPath(app.controllers[0])).to.equal(true);
+    expect(app.notExistOtherPath(app.controllers[0])).to.equal(true);
   });
   it('should return false', () => {
     let app = new App();
     app.controllers = [new HelloController("/hello"),new HelloController("/hello"),new HelloController("/hello3")];
-    expect(app.existPath(app.controllers[0])).to.equal(false);
+    expect(app.notExistOtherPath(app.controllers[0])).to.equal(false);
   });
 });
 
