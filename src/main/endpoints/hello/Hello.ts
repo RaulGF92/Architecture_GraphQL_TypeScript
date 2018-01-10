@@ -1,7 +1,13 @@
-import { GraphQLObjectType, GraphQLString } from 'graphql';
-import * as GraphQLDate from 'graphql-date';
+//Hello.ts (Hello)
 
-export class Hello {
+/**
+ * This class isn't is obligatory for a correct function of code. This class is like a builder,it is use for don't build 
+ * objects all the time that you make a response in Querys or Mutations. Also a raw definition of a object don't have 
+ * the validation that a TS class have.
+ * 
+ * Is for this, that is recomendable use this class always and implement in all endpoints.
+ */
+export default class Hello {
     message: string;
     timeOfCreation: Date;
 
@@ -10,19 +16,3 @@ export class Hello {
         this.timeOfCreation = new Date();
     }
 }
-
-export const HelloObjectType = new GraphQLObjectType({
-    name: "hello",
-    fields: {
-        message: {
-            type: GraphQLString,
-            description: "Message send it to user"
-        },
-        timeOfCreation: {
-            type: GraphQLDate,
-            description: "Time of Entity creation"
-        }
-    }
-});
-
-

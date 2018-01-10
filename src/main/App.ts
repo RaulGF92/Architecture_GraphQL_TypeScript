@@ -1,5 +1,8 @@
+//App.ts 
 import * as colors from 'colors';
+
 import HttpServer from './HttpServer';
+
 import GraphQLController from './GraphQLController';
 import HelloController from './endpoints/hello/HelloController';
 import UserController from './endpoints/user/UserController';

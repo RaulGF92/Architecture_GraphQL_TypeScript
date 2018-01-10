@@ -1,4 +1,9 @@
-import {GraphQLObjectType,GraphQLString,GraphQLObjectTypeConfig} from 'graphql';
+//Mutation.ts (User)
+import {
+    GraphQLObjectType,
+    GraphQLString,
+    GraphQLObjectTypeConfig
+} from 'graphql';
 
-const mutation = null as object;
-export default mutation;
+const Mutation = null as object;
+export default Mutation;

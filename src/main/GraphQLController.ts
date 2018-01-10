@@ -1,12 +1,21 @@
-import { GraphQLSchema, GraphQLType, GraphQLInputObjectType, GraphQLObjectType, GraphQLObjectTypeConfig } from 'graphql';
+//GraphQLController.ts
+import { 
+    GraphQLSchema,
+    GraphQLType, 
+    GraphQLInputObjectType, 
+    GraphQLObjectType} from 'graphql';
 import * as graphqlHTTP from 'express-graphql';
-import { GraphQLSchemaConfig } from 'graphql/type/schema';
 
 export default abstract class GraphQLController {
-    private path: String;
 
-    constructor(path: String) {
+    private path: String;
+    protected query : any;
+    protected mutation : any;
+
+    constructor(path: String,query:any,mutation:any) {
         this.path = path;
+        this.query = query;
+        this.mutation = mutation;
     }
 
     public getPath() {
@@ -14,11 +23,11 @@ export default abstract class GraphQLController {
     }
 
     public getBuildSchema() {
-        let query = this.getQuery();
-        let mutation = this.getMutation();
+        let _query = this.query;
+        let _mutation = this.mutation;
 
-        let hasQuery = (query != undefined) || (query != null);
-        let hasMutation = (mutation != undefined) || (mutation != null);
+        let hasQuery = (_query != undefined) || (_query != null);
+        let hasMutation = (_mutation != undefined) || (_mutation != null);
 
         if ((!hasMutation && !hasQuery) || (hasMutation && !hasQuery))
             throw new Error("Not init well");

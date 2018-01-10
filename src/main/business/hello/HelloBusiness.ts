@@ -1,6 +1,8 @@
+//HelloBusiness.ts (Hello Business)
 import Business from '../Business';
-import HelloDAO from '../../dao/hello/HelloDAO';
 import DAO from '../../dao/DAO';
+
+import HelloDAO from '../../dao/hello/HelloDAO';
 
 export default class HelloBusiness implements Business {
 

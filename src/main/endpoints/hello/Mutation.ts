@@ -1,10 +1,20 @@
-import { GraphQLObjectType, GraphQLString, GraphQLScalarType } from 'graphql';
-import { HelloObjectType,Hello } from './Hello';
+//Mutation.ts (Hello)
+import {
+    GraphQLObjectType,
+    GraphQLString,
+    GraphQLScalarType
+} from 'graphql';
+
+// Business Layer
 import HelloBusiness from '../../business/hello/HelloBusiness';
+
+// GraphQL Endpoint Intern Dependencies 
+import Hello from './Hello';
+import Schema from './Schema';
 
 const mutation = {
     changeName: {
-        type: HelloObjectType,
+        type: Schema,
         description: "Change the default name of hello query.",
         args: {
             name: { type: GraphQLString }

@@ -1,28 +1,32 @@
-import GraphQLController from '../../GraphQLController';
+//UserController.ts (User)
 import { GraphQLObjectType } from 'graphql';
 
-//Intern dependencies
-import query from './Query';
-import mutation from './Mutation';
+//Main GraphQL controller class
+import GraphQLController from '../../GraphQLController';
+
+//GraphQL endpoint Intern dependencies
+import Query from './Query';
+import Mutation from './Mutation';
+import Schema from './Schema';
+import User from './User';
 
 export default class UserController extends GraphQLController {
-    
-    private _query : any;
-    private _mutation : any;
 
     public constructor(path: String) {
-        super(path);
+        //IF DON'T HAVE MUTATION IMPLEMENTATION PUT NULL
+        super(path,Query,Mutation);
+        //Only need put main Query is a check of minimal requeriments
     }
 
     public getMutation() {
-        return this._mutation;
+        return this.mutation;
     }
 
     public getQuery() {
         return new GraphQLObjectType({
             name: 'userApi',
             fields: () => ({
-                ...this._query,
+                ...this.query,
             })
         });
     }

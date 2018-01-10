@@ -1,10 +1,20 @@
-import {Hello,HelloObjectType} from './Hello';
+//Query.ts (Hello)
+import {
+    GraphQLObjectType,
+    GraphQLString,
+    GraphQLScalarType
+} from 'graphql';
+
+//Bussines dependencies
 import HelloBusiness from '../../business/hello/HelloBusiness';
-import { GraphQLObjectType, GraphQLString, GraphQLScalarType } from 'graphql';
+
+//GraphQL Endpoint Intern dependencies
+import Hello from './Hello';
+import Schema from './Schema';
 
 const query = {
     hello: {
-        type: HelloObjectType,
+        type: Schema,
         description: "Say hello to the visitants",
         args: {
             name: { type: GraphQLString }

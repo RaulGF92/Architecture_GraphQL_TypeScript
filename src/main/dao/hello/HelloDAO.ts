@@ -1,3 +1,4 @@
+//HelloDAO.ts (Hello DAO)
 import DAO from '../DAO';
 
 export default class HelloDAO implements DAO {

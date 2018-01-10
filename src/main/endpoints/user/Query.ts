@@ -1,4 +1,5 @@
+//Query.ts (User)
 import { GraphQLObjectType } from "graphql";
 
-const query = null as object;
-export default query;
+const Query = null as object;
+export default Query;
