@@ -5,7 +5,6 @@ import HttpServer from './HttpServer';
 
 import GraphQLController from './GraphQLController';
 import HelloController from './endpoints/hello/HelloController';
-import UserController from './endpoints/user/UserController';
 
 export default class App {
 
@@ -13,7 +12,6 @@ export default class App {
 
     public controllers = [
         new HelloController("/hello"),
-        new UserController("/user"),
         //add new controllers
     ];
 
