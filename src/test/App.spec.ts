@@ -28,6 +28,7 @@ describe('exitPath', () => {
   });
 });
 
+
 describe('init', () => {
   it('should access to entry point', () => {
     let app = new App();
@@ -46,4 +47,3 @@ describe('init', () => {
       });
   });
 });
-
