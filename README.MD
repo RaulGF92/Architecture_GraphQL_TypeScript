@@ -32,19 +32,19 @@ Finaly, for check if the service is run correctly you only need put this link in
 
 ### Endpoints
 
-The Endpoints is the layer that contain all GraphQL services. This layer is group in **Endpoint** that it is a set of entities, which it working together can it make a correct service's GraphQL.
+This layer is group on **Endpoint** that it is a set of entities, which its working together, can it make a correct service's GraphQL.
 
-The Endpoint entity is agruped in four entities and its is contains in the same folder. For example in Hello's Endpoint folder we have :
+The Endpoint entity is agrouped in four entities and its are contains in the same folder. For example in Hello's Endpoint folder we have :
 
 * Controller (HelloController.ts)
 * Schema (Schema.ts)
 * Query (Query.ts)
 * Mutation [**Optional**] (Mutation.ts)
-* Model Class [**Optional**] (Mutation.ts)
+* Model Class [**Optional**] (Hello.ts)
 
 ## Controller
 
-The Controller is the class which it is comunicate with HTTP layer and binding us endpoint in a especific path. Because a controller can be of any protocol, the code have a especific **GraphQLController**. This class is use in the **HTTPServer** and contains the graphQL HTTP router.
+The Controller is the class which it is comunicate with HTTP layer and binding us endpoint entity to a especific URL path. Because a controller can be of any protocol, the code have a especific **GraphQLController**, for binding the endpoint entities to GraphQL protocol. This class is use in the **App** class and contains the graphQL HTTP router using in **HttpRouter**.
 
 When we create a new Controller we shall extend us class from **GraphQLController**. And the TypeScript say us that we need implement some constructor and functions are example are this:
 
@@ -77,6 +77,20 @@ class MyController extends GraphQLController {
 
 }
 ```
+
+### Init the controllers in the App
+
+For your controller work in the code you must insert the controller in  controllers's array inside **App** class . Go to **App** class and on it code you will looking a array, insert the controller in array,something like this code:
+
+```TypeScript
+    public controllers = [
+        new HelloController("/hello"),
+        new UserController("/user")
+        //add new controllers
+    ];
+```
+
+When you are init the controller you shall **try don't have two controllers with the same path**, otherwhise the app it brokes if the controllers's array have this error.
 
 ### Add more Queries or Mutations
 

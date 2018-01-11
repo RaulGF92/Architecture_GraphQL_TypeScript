@@ -10,9 +10,11 @@ import UserController from './endpoints/user/UserController';
 export default class App {
 
     public server: HttpServer;
+
     public controllers = [
         new HelloController("/hello"),
-        new UserController("/user")
+        new UserController("/user"),
+        //add new controllers
     ];
 
     constructor() {
